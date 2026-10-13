@@ -28,7 +28,7 @@ func NewConfiguration() *Config {
 }
 
 func (c *Config) GetStringDBConnection() string {
-	return fmt.Sprintf("postgres://%s:%s@%s:%s/%s?sslmode=%s",
+	return fmt.Sprintf("postgres://%s:%s@%s:%s/%s?sslmode=disable",
 		c.Database.UserName,
 		c.Database.Password,
 		c.Database.Host,

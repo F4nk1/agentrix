@@ -37,10 +37,10 @@ func NewDataBase(ctx context.Context, config *config.Config) (*Database, error) 
 		Db: db,
 	}
 
-	return connection, nil
+	return database, nil
 }
 
 func (c *Database) Close() error {
-	return c.Db.close()
+	return c.Db.Close()
 }
 

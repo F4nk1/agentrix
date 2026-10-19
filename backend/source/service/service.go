@@ -1,10 +1,8 @@
 package service
 
 import (
-	"context"
 	
 	"github.com/F4nk1/agentrix/backend/source/database"
-	"github.com/F4nk1/agentrix/backend/source/model"
 )
 type Service interface {
 

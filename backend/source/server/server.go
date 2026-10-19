@@ -9,6 +9,7 @@ import (
 
 	"github.com/F4nk1/agentrix/backend/source/auth"
 	"github.com/F4nk1/agentrix/backend/source/cache"
+	"github.com/F4nk1/agentrix/backend/source/middleware"
 	"github.com/F4nk1/agentrix/backend/source/service"
 )
 
@@ -34,6 +35,13 @@ func NewServer(service service.Service) *Server {
 func (s *Server) buildHandler() http.Handler {
 	router := mux.NewRouter()
 	
+	router.Use(middleware.Correlation)
+	router.Use(middleware.Cors)
 
+	api := router.PathPrefix("/api/v1").Subrouter()
+
+	protected := api.NewRoute().Subrouter()
+	protected.Use(middleware.Auth(s.Auth))
+	protected.Use(middleware.Cache(s.Cache))
 	return router
 }

@@ -5,6 +5,7 @@ import (
 	"log"
 	"sync"
 
+
 	"go.uber.org/zap"
 	"go.uber.org/zap/zapcore"
 )
@@ -12,7 +13,7 @@ import (
 type contextKey string
 
 const RequestIdKey contextKey = "requestId"
-const MemberIdKey contextKey = "memberId"
+const UserIdKey contextKey = "userId"
 
 var (
 	logger *zap.SugaredLogger
@@ -83,8 +84,8 @@ func WithContext(ctx context.Context) *zap.SugaredLogger {
 	if requestId, ok := ctx.Value(RequestIdKey).(string); ok {
 		l = l.With("requestId", requestId)
 	}
-	if memberId, ok := ctx.Value(MemberIdKey).(string); ok {
-		l = l.With("memberId", memberId)
+	if userId, ok := ctx.Value(UserIdKey).(int); ok {
+		l = l.With("userId", userId)
 	}
 	return l
 }

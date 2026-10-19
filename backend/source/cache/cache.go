@@ -5,6 +5,8 @@ import (
 	"time"
 )
 
+const DefaultTTL = 5*time.Minute
+
 type Cache interface {
 	Get(key string) (interface{}, bool)
 	Set(key string, value interface{}, duration time.Duration)
